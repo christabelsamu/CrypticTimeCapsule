@@ -34,5 +34,24 @@
   )
 )
 
+(define-public (unlock-capsule (capsule-id uint))
+  (let
+    (
+      (capsule (unwrap! (map-get? capsules { capsule-id: capsule-id }) (err u404)))
+      (current-time (unwrap! (get-block-info? time (- block-height u1)) (err u500)))
+    )
+    (asserts! (is-eq (get owner capsule) tx-sender) (err u403))
+    (asserts! (not (get is-unlocked capsule)) (err u400))
+    (asserts! (>= current-time (get unlock-time capsule)) (err u403))
+    (map-set capsules
+      { capsule-id: capsule-id }
+      (merge capsule { is-unlocked: true })
+    )
+    (ok true)
+  )
+)
 
+(define-read-only (get-capsule (capsule-id uint))
+  (map-get? capsules { capsule-id: capsule-id })
+)
 

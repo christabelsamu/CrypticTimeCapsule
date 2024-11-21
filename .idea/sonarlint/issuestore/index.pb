@@ -9,3 +9,5 @@ S
 #contracts/bitcoin-price-oracle.clar,5/4/54f65611d5a1b95d36c65e7527b390b4759bca71
 R
 "tests/bitcoin-price-oracle.test.ts,5/0/50bd96f558069dad5e8894b28a2f21e55ec30a7f
+A
+package-lock.json,f/a/fa288d1472d29beccb489a676f68739ad365fc47
